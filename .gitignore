@@ -1,3 +1,6 @@
+# Build artifacts
+seahorse
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
