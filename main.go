@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
+	"github.com/MichaelS11/go-ads"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/stianeikeland/go-rpio/v4"
 )
@@ -17,9 +19,32 @@ var (
 )
 
 func main() {
+	err := ads.HostInit()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// create new ads with wanted busName and address. 
+	ads1, err := ads.NewADS("I2C1", 0x48, "")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer ads1.Close()
+
+	ads1.SetConfigGain(ads.ConfigGain1)
+
+	for {
+		result, err := ads1.ReadRetry(5)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		fmt.Println(result)
+		time.Sleep(time.Second)
+	}
+
 	// init gpio
 	if err := rpio.Open(); err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 	defer rpio.Close()
 
