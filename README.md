@@ -8,7 +8,7 @@ Currently, it has only been built for and tested on the [Raspberry Pi Zero W](ht
 ## Setup
 Some extra setup needs to be done to get this working on the Pi Zero W:
 ```
-# if wanting to use UFW
+# if wanting to use UFW (requires reboot)
 sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 
 # Interface Options -> I2C -> Enable
