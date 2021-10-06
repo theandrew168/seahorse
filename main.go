@@ -47,8 +47,8 @@ func NewSeahorse(sensor *ads.ADS, pump rpio.Pin) (*Seahorse, error) {
 		sensor: sensor,
 		pump:   pump,
 
-		soilMoisture:   soilMoisture,
-		pumpUptime: pumpUptime,
+		soilMoisture: soilMoisture,
+		pumpUptime:   pumpUptime,
 	}
 	return &seahorse, nil
 }
