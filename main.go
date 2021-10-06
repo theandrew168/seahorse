@@ -111,8 +111,8 @@ func (s *Seahorse) ControlLoop(interval time.Duration) {
 
 		// if soil is dry, turn on the pump for a few seconds and update metric
 		if moisture < 0.25 {
-			s.RunPump(5 * time.Second)
-			s.pumpUptime.Add(5000)
+			s.RunPump(10 * time.Second)
+			s.pumpUptime.Add(10000)
 		}
 
 		// sleep til next loop
